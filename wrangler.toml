@@ -1,0 +1,25 @@
+name = "garden-mcp"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+# Custom domain — requires alamort.ca DNS to be on this Cloudflare account.
+# On deploy, Cloudflare auto-creates the DNS record + TLS cert for mcp.alamort.ca.
+routes = [
+  { pattern = "mcp.alamort.ca", custom_domain = true }
+]
+
+[[kv_namespaces]]
+binding = "GARDEN_LEDGER"
+id = "REPLACE_WITH_kv_namespace_id"
+
+[[durable_objects.bindings]]
+name = "MCP_OBJECT"
+class_name = "GardenAgent"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["GardenAgent"]
+
+[vars]
+# csv of seat ids for list_seats; records live in GARDEN_LEDGER
+GARDEN_SEATS = "susano,morgana,luxana,artemis,athena,saraswati"

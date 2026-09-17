@@ -1,0 +1,7 @@
+{
+  "ops": [
+    "present_beam",
+    "list_seats"
+  ],
+  "model": "llama3.1:8b"
+}
